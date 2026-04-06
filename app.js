@@ -1,12 +1,10 @@
 const FILE_EXT = ".pdf"
-const DEFAULT_FILE = "text-export"
 const EMPTY_PREVIEW = "Your text will appear here."
 const STATUS_READY = "Ready"
 const STATUS_EMPTY = "Enter text to export"
 const STATUS_DONE = "PDF downloaded"
 
 const textInput = document.querySelector("#textInput")
-const fileNameInput = document.querySelector("#fileName")
 const preview = document.querySelector("#preview")
 const status = document.querySelector("#status")
 const meta = document.querySelector("#meta")
@@ -28,9 +26,8 @@ function syncView() {
 }
 
 function getFileName() {
-  const raw = fileNameInput.value.trim() || DEFAULT_FILE
-  const safe = raw.replace(/[<>:"/\\|?*\u0000-\u001f]/g, "").replace(/\s+/g, "-")
-  return `${safe || DEFAULT_FILE}${FILE_EXT}`
+  const x = parseInt(Date.now() / 10).toString(26).replace(/./g, c => (parseInt(c, 26) + 10).toString(36))
+  return `${x}${FILE_EXT}`
 }
 
 function downloadPdf() {
@@ -90,7 +87,6 @@ function clearAll() {
 }
 
 textInput.addEventListener("input", syncView)
-fileNameInput.addEventListener("input", syncView)
 downloadBtn.addEventListener("click", downloadPdf)
 clearBtn.addEventListener("click", clearAll)
 
