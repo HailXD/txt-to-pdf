@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">TEXT TO PDF</p>
+      <h1>Paste text. Download a clean PDF.</h1>
+      <p class="lede">
+        A single-screen tool for turning notes, drafts, or copied text into a printable PDF without setup.
+      </p>
+    </section>
+
+    <section class="studio">
+      <div class="panel controls">
+        <label class="label" for="fileName">File name</label>
+        <input id="fileName" class="input" type="text" value="text-export" maxlength="40">
+
+        <div class="toolbar">
+          <button id="clearBtn" class="button button-ghost" type="button">Clear</button>
+          <button id="downloadBtn" class="button" type="button">Download PDF</button>
+        </div>
+
+        <label class="label" for="textInput">Text</label>
+        <textarea id="textInput" class="input area" spellcheck="false" placeholder="Type or paste your text here..."></textarea>
+
+        <p id="status" class="status">Ready</p>
+      </div>
+
+      <div class="panel preview-panel">
+        <div class="preview-head">
+          <span>Live preview</span>
+          <span id="meta" class="meta">0 chars</span>
+        </div>
+        <article class="page">
+          <div id="preview" class="page-text">Your text will appear here.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

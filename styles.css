@@ -1,0 +1,245 @@
+:root {
+  --bg: #000213;
+  --panel: #001933;
+  --panel-alt: #00254d;
+  --ink: #f5f7ff;
+  --muted: #9bb3cf;
+  --line: #6ad1ff;
+  --accent: #ffd84d;
+  --phone: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M25 0H0v25' fill='none' stroke='rgba(106,209,255,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 26px 26px;
+  color: var(--ink);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: auto 0 0 auto;
+  width: min(32vw, 280px);
+  height: min(32vw, 280px);
+  border-top: 2px solid var(--line);
+  border-left: 2px solid var(--line);
+  background: var(--panel-alt);
+  z-index: -1;
+}
+
+.shell {
+  width: min(1160px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+  animation: rise 520ms ease-out both;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 11ch;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+  gap: 18px;
+  align-items: start;
+}
+
+.panel {
+  border: 2px solid var(--line);
+  background: var(--panel);
+  padding: 18px;
+  animation: rise 520ms ease-out both;
+}
+
+.controls {
+  display: grid;
+  gap: 12px;
+}
+
+.label,
+.meta,
+.status,
+.preview-head {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.label,
+.preview-head {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  padding: 14px 16px;
+  background: #061120;
+  color: var(--ink);
+  font: inherit;
+}
+
+.input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.area {
+  min-height: 420px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0 10px;
+}
+
+.button {
+  border: 2px solid var(--line);
+  padding: 12px 18px;
+  background: var(--accent);
+  color: #111;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translate(-4px, -4px);
+}
+
+.button-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.status {
+  margin: 0;
+  min-height: 1.2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.preview-panel {
+  position: sticky;
+  top: 18px;
+  display: grid;
+  gap: 14px;
+  animation-delay: 90ms;
+}
+
+.preview-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.page {
+  margin: 0;
+  aspect-ratio: 1 / 1.414;
+  background: #fffef8;
+  color: #111;
+  padding: clamp(22px, 4vw, 34px);
+  overflow: hidden;
+}
+
+.page-text {
+  height: 100%;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  line-height: 1.65;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .studio {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .shell {
+    width: min(100vw - 18px, var(--phone));
+    padding-top: 18px;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  .button,
+  .input {
+    width: 100%;
+  }
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
