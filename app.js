@@ -1,29 +1,12 @@
 const FILE_EXT = ".pdf"
-const EMPTY_PREVIEW = "Your text will appear here."
 const STATUS_READY = "Ready"
 const STATUS_EMPTY = "Enter text to export"
 const STATUS_DONE = "PDF downloaded"
 
 const textInput = document.querySelector("#textInput")
-const preview = document.querySelector("#preview")
 const status = document.querySelector("#status")
-const meta = document.querySelector("#meta")
 const downloadBtn = document.querySelector("#downloadBtn")
 const clearBtn = document.querySelector("#clearBtn")
-
-function syncView() {
-  const text = textInput.value.trim()
-
-  preview.textContent = text || EMPTY_PREVIEW
-  meta.textContent = `${textInput.value.length} chars`
-
-  if (!text) {
-    status.textContent = STATUS_EMPTY
-    return
-  }
-
-  status.textContent = STATUS_READY
-}
 
 function getFileName() {
   const x = parseInt(Date.now() / 10).toString(26).replace(/./g, c => (parseInt(c, 26) + 10).toString(36))
@@ -82,12 +65,8 @@ function downloadPdf() {
 function clearAll() {
   textInput.value = ""
   status.textContent = STATUS_READY
-  syncView()
   textInput.focus()
 }
 
-textInput.addEventListener("input", syncView)
 downloadBtn.addEventListener("click", downloadPdf)
 clearBtn.addEventListener("click", clearAll)
-
-syncView()
